@@ -8,13 +8,6 @@ defmodule LlamaBinding.MixProject do
       elixir: "~> 1.14",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
-      compilers: [:rustler] ++ Mix.compilers(),
-      rustler_crates: [
-        llm_cpp: [
-          path: "native/llm_cpp",
-          mode: :release
-        ]
-      ],
       aliases: aliases(),
       deps: deps()
     ]

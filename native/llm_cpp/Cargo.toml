@@ -1,0 +1,13 @@
+[package]
+name = "llm_cpp"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "llm_cpp"
+path = "src/lib.rs"
+crate-type = ["cdylib"]
+
+[dependencies]
+rustler = "0.35.0"
+llama_cpp = { git = "https://github.com/vargad/llama_cpp-rs.git", branch = "bump_3038" }

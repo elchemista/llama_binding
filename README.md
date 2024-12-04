@@ -1,18 +1,35 @@
 # LlamaBinding
 
-To start your Phoenix server:
+## Start
 
-  * Run `mix setup` to install and setup dependencies
-  * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
+```bash
+mix deps.get && iex -S mix
+```
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+Once rust lib compiled, you can start using llama_binding
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+## Using llama_binding
 
-## Learn more
+Testing with llama3.2:1B model (./llm_models)
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+```elixir
+
+{:ok, model} = LlamaBinding.load_model("./llm_models/path_to_model.gguf")
+
+```
+
+Once it loaded you can use it:
+
+```elixir
+{:ok, session} = LLama.create_session(model)
+
+LLama.set_context(session, "This is the story of a man named Stanley.")
+
+output = LLama.complete(session, 1024)
+
+IO.puts(output)
+
+```
+
+I wanted to get in output Elixir Stream so i can stream directly to liveview.
+## 
